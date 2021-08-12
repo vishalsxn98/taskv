@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.vishal.videop.R
 import com.vishal.videop.databinding.ListItemVideoBinding
 import com.vishal.videop.ui.home.domain.model.VideoModel
+import java.util.concurrent.TimeUnit
 
 class VideoListAdapter(private val itemClickHandler: (path: String) -> Unit) :
     ListAdapter<VideoModel, VideoViewHolder>(VideoItemDiffCallback()) {
@@ -42,6 +43,11 @@ class VideoViewHolder(
         binding.root.setOnClickListener {
             model.uri.path?.let { it1 -> itemClickHandler(it1) }
         }
+        val time = model.duration.toLong()
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(time)
+        val seconds = (TimeUnit.MILLISECONDS.toSeconds(time)
+                % 60)
+        binding.duration.text="$minutes:$seconds"
     }
 }
 
