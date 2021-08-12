@@ -1,5 +1,6 @@
 package com.vishal.videop.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -35,6 +36,7 @@ class VideoViewHolder(
     private val itemClickHandler: (path: String) -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root) {
+    @SuppressLint("SetTextI18n")
     fun bind(model: VideoModel) {
 
         Glide.with(binding.root.context)
